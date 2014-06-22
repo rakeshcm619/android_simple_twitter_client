@@ -24,13 +24,13 @@ public class TimelineActivity extends Activity {
 	private ArrayAdapter<Tweet> aTweets;
 	private ListView lvTweets;
 	
-	private long minUid = 1;
+	private long minUid = Long.MAX_VALUE;
 	private boolean isFetchComplete = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_timeline);
+		setContentView(R.layout.activity_timeline); 
 		
 		client = TwitterApplication.getRestClient();	
 		populateTimeline();
@@ -55,7 +55,7 @@ public class TimelineActivity extends Activity {
 			
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
-				// TODO Auto-generated method stub
+				// TODO Auto-generated method stub 
 				
 			}
 			
