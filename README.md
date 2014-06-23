@@ -26,6 +26,8 @@ Note: Update your keys in TwitterClient.java
 
 10. User is taken back to home timeline with new tweet visible in timeline
 
+11. Limited to 140 characters. but does not show.
+
 ## Demo - mandatory:
 
 ![demo](screenshots/twitter_client.gif)
