@@ -1,6 +1,8 @@
 android_simple_twitter_client
 =============================
 # Basic Twitter Client
+
+Note: Update your keys in TwitterClient.java
  
 ## Description:
 
