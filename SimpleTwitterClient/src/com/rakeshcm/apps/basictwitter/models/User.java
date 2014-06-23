@@ -41,4 +41,8 @@ public class User {
 		return u;
 	}
 	
+	@Override
+	public String toString() {
+		return getName() + ", " + getScreenName();
+	}
 }

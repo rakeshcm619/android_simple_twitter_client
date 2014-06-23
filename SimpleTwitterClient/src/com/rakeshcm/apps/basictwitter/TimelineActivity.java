@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.rakeshcm.apps.basictwitter.models.Tweet;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
@@ -17,6 +17,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.rakeshcm.apps.basictwitter.models.Tweet;
 
 public class TimelineActivity extends Activity {
 	private TwitterClient client;
@@ -26,6 +29,7 @@ public class TimelineActivity extends Activity {
 	
 	private long minUid = Long.MAX_VALUE;
 	private boolean isFetchComplete = false;
+	private int TWEETS_REQUEST_CODE = 23;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -108,5 +112,29 @@ public class TimelineActivity extends Activity {
 				Log.d("debug", s.toString());
 			}
 		});
+	}
+	
+	@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.timeline_tweet, menu);
+        return true;
+    }
+	
+	public void onNewTweet(MenuItem mi) {
+		Intent i = new Intent(this, ComposeTweetActivity.class);
+		startActivityForResult(i, TWEETS_REQUEST_CODE);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		Log.d("debug", "Tweet Succesfully posted" + resultCode + ", " + requestCode + "{" + RESULT_OK + "," + RESULT_CANCELED + "}");
+		if (requestCode == TWEETS_REQUEST_CODE) {
+			Log.d("debug", "Tweet Succesfully posted");
+			populateTimeline();
+		}
 	}
 }

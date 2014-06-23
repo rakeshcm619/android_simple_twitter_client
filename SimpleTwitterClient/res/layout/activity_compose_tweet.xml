@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${packageName}.${activityClass}" >
+
+    <ImageView
+        android:id="@+id/ivUserProfileImage"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/ic_launcher"
+        android:contentDescription="@string/profile_image" />
+
+    <TextView
+        android:id="@+id/tvUserProfileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivUserProfileImage"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/ivUserProfileImage"
+        android:text="@string/profile_name"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvUserScreenName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvUserProfileName"
+        android:layout_below="@+id/tvUserProfileName"
+        android:layout_marginTop="5dp"
+        android:text="@string/screen_name"
+        android:fontFamily="sans-serif-thin"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/etTweetText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ivUserProfileImage"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/ivUserProfileImage"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="15dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:hint="@string/tweet_hint"
+        android:background="#00000000"
+        android:maxLength="140" >
+
+        <requestFocus />
+    </EditText>
+
+</RelativeLayout>

@@ -47,6 +47,10 @@
             android:name="com.rakeshcm.apps.basictwitter.TimelineActivity"
             android:label="@string/title_activity_timeline" >
         </activity>
+        <activity
+            android:name="com.rakeshcm.apps.basictwitter.ComposeTweetActivity"
+            android:label="@string/title_activity_compose_tweet" >
+        </activity>
     </application>
 
 </manifest>

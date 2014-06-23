@@ -104,14 +104,15 @@ public class Tweet {
 	
 	private String shortenRelativeTimeString(String relativeDate) {
 		String shortnedRelativeDate = ""; 
-		if(relativeDate.contains("second ago")) shortnedRelativeDate = relativeDate.replaceAll("second ago", "s");
-		else if(relativeDate.contains("seconds ago")) shortnedRelativeDate = relativeDate.replaceAll("seconds ago", "s");
-		else if(relativeDate.contains("minute ago")) shortnedRelativeDate = relativeDate.replaceAll("minute ago", "m");
-		else if(relativeDate.contains("minutes ago")) shortnedRelativeDate = relativeDate.replaceAll("minutes ago", "m");
-		else if(relativeDate.contains("hour ago")) shortnedRelativeDate = relativeDate.replaceAll("hour ago", "h");
-		else if(relativeDate.contains("hours ago")) shortnedRelativeDate = relativeDate.replaceAll("hours ago", "h");
-		else if(relativeDate.contains("day ago")) shortnedRelativeDate = relativeDate.replaceAll("day ago", "d");
-		else if(relativeDate.contains("days ago")) shortnedRelativeDate = relativeDate.replaceAll("days ago", "d");
+		if(relativeDate.contains(" second ago")) shortnedRelativeDate = relativeDate.replaceAll(" second ago", "s");
+		else if(relativeDate.contains(" seconds ago")) shortnedRelativeDate = relativeDate.replaceAll(" seconds ago", "s");
+		else if(relativeDate.contains(" seconds")) shortnedRelativeDate = relativeDate.replaceAll(" seconds", "s");
+		else if(relativeDate.contains(" minute ago")) shortnedRelativeDate = relativeDate.replaceAll(" minute ago", "m");
+		else if(relativeDate.contains(" minutes ago")) shortnedRelativeDate = relativeDate.replaceAll(" minutes ago", "m");
+		else if(relativeDate.contains(" hour ago")) shortnedRelativeDate = relativeDate.replaceAll(" hour ago", "h");
+		else if(relativeDate.contains(" hours ago")) shortnedRelativeDate = relativeDate.replaceAll(" hours ago", "h");
+		else if(relativeDate.contains(" day ago")) shortnedRelativeDate = relativeDate.replaceAll(" day ago", "d");
+		else if(relativeDate.contains(" days ago")) shortnedRelativeDate = relativeDate.replaceAll(" days ago", "d");
 		else shortnedRelativeDate = relativeDate;
 		return shortnedRelativeDate;
 	}
