@@ -44,13 +44,14 @@ public class TwitterClient extends OAuthBaseClient {
     }
     */
     
-    
+    /*
     public void getHomeTimeline(AsyncHttpResponseHandler handler) {
     	String apiUrl = getApiUrl("statuses/home_timeline.json");
     	RequestParams params = new RequestParams();
         params.put("since_id", "1");
         client.get(apiUrl, params, handler);
     }
+    */
     
     public void getPaginatedHomeTimeline(long maxId, AsyncHttpResponseHandler handler) {
     	String apiUrl = getApiUrl("statuses/home_timeline.json");
@@ -59,11 +60,16 @@ public class TwitterClient extends OAuthBaseClient {
         client.get(apiUrl, params, handler);
     }
     
+    public void getPaginatedUserTimeline(long maxId, AsyncHttpResponseHandler handler) {
+    	String apiUrl = getApiUrl("statuses/user_timeline.json");
+    	RequestParams params = new RequestParams();
+        params.put("max_id", String.valueOf(maxId));
+        client.get(apiUrl, params, handler);
+    }
+    
     public void getUserInfo(AsyncHttpResponseHandler handler) {
     	String apiUrl = getApiUrl("account/verify_credentials.json");
-    	RequestParams params = new RequestParams();
-        params.put("skip_status", "true");
-        client.get(apiUrl, params, handler);
+        client.get(apiUrl, null, handler);
     }
     
     public void postTweetInfo(String tweetBody, AsyncHttpResponseHandler handler) {
@@ -71,6 +77,13 @@ public class TwitterClient extends OAuthBaseClient {
     	RequestParams params = new RequestParams();
         params.put("status", tweetBody);
         client.post(apiUrl, params, handler);
+    }
+    
+    public void getPaginatedMentionsTimeline(long maxId, AsyncHttpResponseHandler handler) {
+    	String apiUrl = getApiUrl("statuses/mentions_timeline.json");
+    	RequestParams params = new RequestParams();
+        params.put("max_id", String.valueOf(maxId));
+        client.get(apiUrl, params, handler);
     }
     
     /* 1. Define the endpoint URL with getApiUrl and pass a relative path to the endpoint

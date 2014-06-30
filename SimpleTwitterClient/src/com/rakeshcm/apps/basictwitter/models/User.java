@@ -8,7 +8,17 @@ public class User {
 	private String name;
 	private String screenName;
 	private String profileImageUrl;
+	private int followersCount;
+	private int friendsCount;
 	
+	public int getFollowersCount() {
+		return followersCount;
+	}
+
+	public int getFriendsCount() {
+		return friendsCount;
+	}
+
 	public long getUid() {
 		return uid;
 	}
@@ -33,6 +43,8 @@ public class User {
 			u.uid = json.getLong("id");
 			u.screenName = json.getString("screen_name");
 			u.profileImageUrl = json.getString("profile_image_url");
+			u.followersCount = json.getInt("followers_count");
+			u.friendsCount = json.getInt("friends_count");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

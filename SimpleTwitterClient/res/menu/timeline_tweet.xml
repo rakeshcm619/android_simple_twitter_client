@@ -7,4 +7,11 @@
         android:title="@string/menu_title"
         android:onClick="onNewTweet">
     </item>
+    <item
+        android:id="@+id/myProfile"
+        android:icon="@drawable/my_profile"
+        android:showAsAction="ifRoom"
+        android:title="@string/profile_name"
+        android:onClick="onProfileView">
+    </item>
 </menu>

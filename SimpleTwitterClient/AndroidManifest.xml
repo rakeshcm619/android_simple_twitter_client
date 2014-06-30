@@ -51,6 +51,10 @@
             android:name="com.rakeshcm.apps.basictwitter.ComposeTweetActivity"
             android:label="@string/title_activity_compose_tweet" >
         </activity>
+        <activity
+            android:name="com.rakeshcm.apps.basictwitter.ProfileActivity"
+            android:label="@string/title_activity_profile" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${packageName}.${activityClass}" >
+	<ImageView
+        android:id="@+id/ivMyProfileImage"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/ic_launcher"
+        android:contentDescription="@string/profile_image" />
+
+    <TextView
+        android:id="@+id/tvMyProfileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivMyProfileImage"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/ivMyProfileImage"
+        android:text="@string/profile_name"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvMyScreenName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvMyProfileName"
+        android:layout_below="@+id/tvMyProfileName"
+        android:layout_marginTop="5dp"
+        android:text="@string/screen_name"
+        android:fontFamily="sans-serif-thin"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvFollowers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ivMyProfileImage"
+        android:layout_below="@+id/ivMyProfileImage"
+        android:layout_marginTop="25dp"
+        android:text="@string/num_followers" />
+
+    <TextView
+        android:id="@+id/tvFollowing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvFollowers"
+        android:layout_alignBottom="@+id/tvFollowers"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/tvFollowers"
+        android:text="@string/num_following" />
+
+    <fragment
+        android:id="@+id/fragment_user_timeline"
+        android:name="com.rakeshcm.apps.basictwitter.fragments.UserTimelineFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvFollowers"
+        android:layout_marginTop="15dp"
+        tools:layout="@layout/fragment_tweets_list" />
+
+</RelativeLayout>

@@ -12,8 +12,11 @@
     <string name="profile_name">profilename</string>
     <string name="screen_name">\@screenname</string>
     <string name="time_ago">hh</string>
-    <string name="menu_title">Home</string>
+    <string name="menu_title">Timeline</string>
     <string name="title_activity_compose_tweet">Compose Tweet</string>
     <string name="tweet_hint">What\'s happening?</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="num_following">following</string>
+    <string name="num_followers">followers</string>
 
 </resources>
