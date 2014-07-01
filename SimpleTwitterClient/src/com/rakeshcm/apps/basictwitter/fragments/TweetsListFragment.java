@@ -155,7 +155,7 @@ public class TweetsListFragment extends Fragment {
 				Log.d("debug", s.toString());
 			}
 		});
-	}
+	} 
 	
 	private void commonOnSuccess(JSONArray json, boolean isPagination) {
 		ArrayList<Tweet> allReturnedTweets = Tweet.fromJsonArray(json);

@@ -4,7 +4,34 @@ android_simple_twitter_client
 
 Note: Update your keys in TwitterClient.java
  
+## Demo:
+
+![demo](screenshots/twitter_client_fragments.gif)
+
 ## Description:
+
+1. Includes all required user stories from Week 3 Twitter Client
+
+2. User can switch between Timeline and Mention views using tabs.
+
+3. User can view their home timeline tweets.
+
+4. User can view the recent mentions of their username.
+
+5. User can scroll to bottom of either of these lists and new tweets will load ("infinite scroll")
+
+6. User can navigate to view their own profile
+
+7. User can see picture, tagline, # of followers, # of following, and tweets on their profile.
+
+8. User can click on the profile image in any tweet to see another user's profile.
+
+9. User can see picture, tagline, # of followers, # of following, and tweets of clicked user.
+
+10. Profile view should include that user's timeline
+
+
+## All required user stories from Week 3 Twitter Client
 
 1. User can sign in to Twitter using OAuth login - according to video
 
@@ -28,10 +55,4 @@ Note: Update your keys in TwitterClient.java
 
 11. Limited to 140 characters. but does not show.
 
-## Demo - mandatory:
 
-![demo](screenshots/twitter_client.gif)
-
-## Demo - optional:
-
-![demo](screenshots/twitter_client_click_link.gif)
