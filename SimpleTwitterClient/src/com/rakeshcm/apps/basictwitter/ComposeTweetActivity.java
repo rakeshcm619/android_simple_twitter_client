@@ -64,8 +64,6 @@ public class ComposeTweetActivity extends Activity {
 				finish();
 			}
 		});
-		
-		finish();
 	}
 	
 	public void populateUser() {

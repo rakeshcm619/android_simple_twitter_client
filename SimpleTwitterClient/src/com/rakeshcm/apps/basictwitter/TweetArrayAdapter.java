@@ -3,8 +3,10 @@ package com.rakeshcm.apps.basictwitter;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -21,7 +23,7 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 	 @Override
 	 public View getView(int position, View convertView, ViewGroup parent) {
 		// Get the data item for this position
-		Tweet tweet = this.getItem(position); 
+		final Tweet tweet = this.getItem(position); 
 		
 		// Find or inflate the template
 		View v;
@@ -48,6 +50,16 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 		tvTweetBody.setText(tweet.getBody());
 		tvTimeAgo.setText(tweet.getRelativeTimeAgo(tweet.getCreatedAt()));
 
+		ivProfileImage.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(v.getContext(), ProfileActivity.class);
+				i.putExtra("myprofile", false);
+				i.putExtra("userid", tweet.getUser().getUid());
+				v.getContext().startActivity(i);
+			}
+		});
 		return v;
 	}
 }

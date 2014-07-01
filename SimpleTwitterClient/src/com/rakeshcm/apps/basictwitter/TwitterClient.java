@@ -56,20 +56,40 @@ public class TwitterClient extends OAuthBaseClient {
     public void getPaginatedHomeTimeline(long maxId, AsyncHttpResponseHandler handler) {
     	String apiUrl = getApiUrl("statuses/home_timeline.json");
     	RequestParams params = new RequestParams();
-        params.put("max_id", String.valueOf(maxId));
+    	if(maxId == 0) {
+    		params.put("since_id", "1");
+    	}
+    	else {
+    		params.put("max_id", String.valueOf(maxId));
+    	}
         client.get(apiUrl, params, handler);
     }
     
-    public void getPaginatedUserTimeline(long maxId, AsyncHttpResponseHandler handler) {
+    public void getPaginatedUserTimeline(long userId, long maxId, AsyncHttpResponseHandler handler) {
     	String apiUrl = getApiUrl("statuses/user_timeline.json");
     	RequestParams params = new RequestParams();
-        params.put("max_id", String.valueOf(maxId));
+    	if(userId != 0) {
+    		params.put("user_id", String.valueOf(userId));
+    	}
+    	if(maxId == 0) {
+    		params.put("since_id", "1");
+    	}
+    	else {
+    		params.put("max_id", String.valueOf(maxId));
+    	}
         client.get(apiUrl, params, handler);
     }
     
     public void getUserInfo(AsyncHttpResponseHandler handler) {
     	String apiUrl = getApiUrl("account/verify_credentials.json");
         client.get(apiUrl, null, handler);
+    }
+    
+    public void getOtherUserInfo(long userId, AsyncHttpResponseHandler handler) {
+    	String apiUrl = getApiUrl("users/show.json");
+    	RequestParams params = new RequestParams();
+    	params.put("user_id", String.valueOf(userId));
+        client.get(apiUrl, params, handler);
     }
     
     public void postTweetInfo(String tweetBody, AsyncHttpResponseHandler handler) {
@@ -82,7 +102,12 @@ public class TwitterClient extends OAuthBaseClient {
     public void getPaginatedMentionsTimeline(long maxId, AsyncHttpResponseHandler handler) {
     	String apiUrl = getApiUrl("statuses/mentions_timeline.json");
     	RequestParams params = new RequestParams();
-        params.put("max_id", String.valueOf(maxId));
+    	if(maxId == 0) {
+    		params.put("since_id", "1");
+    	}
+    	else {
+    		params.put("max_id", String.valueOf(maxId));
+    	}
         client.get(apiUrl, params, handler);
     }
     

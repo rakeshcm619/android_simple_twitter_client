@@ -11,12 +11,12 @@ import android.view.MenuItem;
 
 import com.rakeshcm.apps.basictwitter.fragments.HomeTimelineFragment;
 import com.rakeshcm.apps.basictwitter.fragments.MentionsTimelineFragment;
-import com.rakeshcm.apps.basictwitter.fragments.TweetsListFragment;
 import com.rakeshcm.apps.basictwitter.listeners.FragmentTabListener;
 
 public class TimelineActivity extends FragmentActivity {
 	
-	private TweetsListFragment fragmentTweetList;
+	private HomeTimelineFragment fragmentHomeTimelineList;
+	private MentionsTimelineFragment fragmentMentionsTimelineList;
 	private int TWEETS_REQUEST_CODE = 23;
 	
 	@Override
@@ -24,10 +24,11 @@ public class TimelineActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_timeline);
 		setupTabs();
-		//fragmentTweetList = (TweetsListFragment) getSupportFragmentManager().findFragmentByTag("home");
-		//fragmentTweetList.populateHomeTimeline(false, Long.MAX_VALUE);
-		Log.d("debug", "TimelineActivity: fragmentTweetList: " + fragmentTweetList);
-		
+		getSupportFragmentManager().executePendingTransactions();
+		fragmentHomeTimelineList = (HomeTimelineFragment) getSupportFragmentManager().findFragmentByTag("home");
+		fragmentMentionsTimelineList = (MentionsTimelineFragment) getSupportFragmentManager().findFragmentByTag("mentions");
+		//fragmentHomeTimelineList.populateHomeTimeline(false, 0L);
+		Log.d("debug", "TimelineActivity: fragmentHomeTimelineList: " + fragmentHomeTimelineList + ", fragmentMentionsTimelineList: " + fragmentMentionsTimelineList);
 	}
 	
 	private void setupTabs() {
@@ -73,18 +74,24 @@ public class TimelineActivity extends FragmentActivity {
 	
 	public void onProfileView(MenuItem mi) {
 		Intent i = new Intent(this, ProfileActivity.class);
+		i.putExtra("myprofile", true);
+		i.putExtra("userid", 0L);
 		startActivity(i);
 	}
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		
 		Log.d("debug", "Tweet Succesfully posted" + resultCode + ", " + requestCode + "{" + RESULT_OK + "," + RESULT_CANCELED + "}");
 		if (requestCode == TWEETS_REQUEST_CODE) {
 			Log.d("debug", "Tweet Succesfully posted");
-			//fragmentTweetList.populateHomeTimeline(false, Long.MAX_VALUE);
+			if (fragmentHomeTimelineList != null) {
+				fragmentHomeTimelineList.fetchHomeTimelineTweets();
+			}
+			if (fragmentMentionsTimelineList != null) {
+				fragmentMentionsTimelineList.fetchMentionsTimelineTweets();
+			}
 		}
 	}
 }

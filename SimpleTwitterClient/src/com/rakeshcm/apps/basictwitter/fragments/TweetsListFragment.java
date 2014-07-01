@@ -34,6 +34,7 @@ public class TweetsListFragment extends Fragment {
 	private long minUid = Long.MAX_VALUE;
 	private long minMentionsUid = Long.MAX_VALUE;
 	private long minUserUid = Long.MAX_VALUE;
+	private long currentUserId = 0L;
 	private boolean isFetchComplete = false;
 	private FragmentType fragmentType;
 	
@@ -100,7 +101,7 @@ public class TweetsListFragment extends Fragment {
 						populateMentionsTimeline(true, minMentionsUid-1);
 					}
 					else if(fragmentType == FragmentType.User) {
-						populateUserTimeline(true, minUserUid-1);
+						populateUserTimeline(true, minUserUid-1, currentUserId);
 					}
 				}
 			}
@@ -139,9 +140,10 @@ public class TweetsListFragment extends Fragment {
 		});
 	}
 	
-	public void populateUserTimeline(final boolean isPagination, final long maxId) {
+	public void populateUserTimeline(final boolean isPagination, final Long maxId, final Long userId) {
 		isFetchComplete = false;
-		client.getPaginatedUserTimeline(maxId, new JsonHttpResponseHandler() {
+		currentUserId = userId;
+		client.getPaginatedUserTimeline(userId, maxId, new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONArray json) {
 				commonOnSuccess(json, isPagination);
@@ -158,22 +160,33 @@ public class TweetsListFragment extends Fragment {
 	private void commonOnSuccess(JSONArray json, boolean isPagination) {
 		ArrayList<Tweet> allReturnedTweets = Tweet.fromJsonArray(json);
 		if(fragmentType == FragmentType.Home) {
+			if(!isPagination){	
+				minUid = Long.MAX_VALUE;
+			}
 			minUid = Tweet.findMinUid(minUid, allReturnedTweets);
 			Log.d("debug", "Home: max_id: " + minUid + ", " + isFetchComplete + ", pagination: " + isPagination);
 		}
 		else if(fragmentType == FragmentType.Mentions) {
+			if(!isPagination){	
+				minMentionsUid = Long.MAX_VALUE;
+			}
 			minMentionsUid = Tweet.findMinUid(minMentionsUid, allReturnedTweets);
 			Log.d("debug", "Mentions: max_id: " + minMentionsUid + ", " + isFetchComplete + ", pagination: " + isPagination);
 		}
 		else if(fragmentType == FragmentType.User) {
+			if(!isPagination){	
+				minUserUid = Long.MAX_VALUE;
+			}
 			minUserUid = Tweet.findMinUid(minUserUid, allReturnedTweets);
 			Log.d("debug", "User: " + allReturnedTweets + ", max_id: " + minUserUid + ", " + isFetchComplete + ", pagination: " + isPagination);
 		}
 		if(!isPagination){	
 			tweets.clear();
+			Log.d("debug", "tweets Cleared");
 		}
 		tweets.addAll(allReturnedTweets);
 		aTweets.notifyDataSetChanged();
+		Log.d("debug", "tweetsCount: " + tweets.size() + ", allReturnedTweets: " + allReturnedTweets.size());
 		isFetchComplete = true;
 	}
 }
